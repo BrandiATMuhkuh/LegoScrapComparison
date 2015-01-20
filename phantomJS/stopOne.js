@@ -39,22 +39,45 @@ function level1(ph){
 
                 //console.log(linkList);
 
+                page.close();
+
+
                 for (var i=0; i<linkList.length; i++) {
 
-                    console.log(linkList[i]);
+                    //console.log(linkList[i]);
 
-
-                    /*
-                    if(linkList[a].href !== undefined){
-                        //openYearPages(linkList[a].href, linkList[a].innerHTML);
-                    }*/
+                    level2(ph, linkList[i]);
                 }
 
-                page.close();
+
 
                 //ph.exit();
             });
 
+
+        });
+    });
+}
+
+
+function level2(ph, mobj){
+    console.log(mobj);
+
+    return ph.createPage(function(page) {
+        return page.open(mobj.link, function(status) {
+            //console.log("opened site? ", status);
+
+            setTimeout(function() {
+            return page.evaluate(function() {
+
+                var back = document.querySelectorAll("table")[8].querySelectorAll("tr")[4].querySelectorAll("td")[0].querySelectorAll("b")[2].innerHTML;
+
+                return back;
+            }, function(ret){
+                page.close();
+                console.log(mobj.year, ret);
+            });
+            }, 3000);
 
         });
     });
