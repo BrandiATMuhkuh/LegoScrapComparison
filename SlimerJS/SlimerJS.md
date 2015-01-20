@@ -7,7 +7,7 @@ We believe that LEGO gets more and more `complex` over time. We define `complex`
 ## H0
 LEGO does not get more `complex` over time
 
-# How to prove H0
+## How to prove H0
 Download all lego sets (from bricklink.com) for every year and then count all object it includes plus the color of this object.
 
 ## LINK Tree
@@ -15,13 +15,26 @@ We **start** our experience by browsing to [http://www.bricklink.com/catalogTree
 
 Before we start following the tree I'll give a short intro to `tree traversing`. Generally speaking we can "walk/travers" trough a tree in two ways. [Breadth-First](http://en.wikipedia.org/wiki/Breadth-first_search) or [Depth-First](http://en.wikipedia.org/wiki/Depth-first_search). Imagine we go to different cities and we want to walk into each room in each house. In **Depth-First** we would start with city one, go to house one and to room one. That to room two of the same house and so on. After we are done with all rooms in all houses in this city we got to the next city and start over. In **Breadth-First** we go to all cities first. Than we go to all houses in all cities. And than to all rooms in all houses in all cities.
 
-Of course in the real world **Depth-First** would make the most sense. But we are in computer science here, we are not in the real world :D. That said, I'll use **Breadth-First** as `traversing` of choice. The reason is, it is more robust. E.g.: First we will find all links to all `years`. That we can go into each link. If we want, we could now parallelize this. One process per link. For more infos about `tree traversing` just follow the two link I added in this text. 
+Of course in the real world **Depth-First** would make the most sense. But we are in computer science here, we are not in the real world :D. That said, I'll use **Breadth-First** as `traversing` of choice. The reason is, it is more robust. E.g.: First we will find all links to all `years`. That we can go into each link. If we want, we could now parallelize this. One process per link. For more infos about `tree traversing` just follow the two link I added in this text.
+
+
+### Extracting genera
+Year -> Set (Inv) -> Object + Quantity + Name (Included color as text)
 
 ### Extracting the year
+* Let's click every year on the first page. Or better, let's find the link to to each year and lets save this in a database or file.
+* Data: YEAR | LINK
 
+### Extracting the Set pages
+* Extract `Page x of y`. `y` is the total number of pages
 
-For **step two** we click on each of this links (except the one with the `?`)
+### Extracting the Sets (inv) links
+* Let's find the link to each object
+* Data: YEAR | Name | Inv link | setID
 
+### Extracting the objects
+* Lets find the item no, the quantity and the name (the name includes the color)
+* Data: setID | Item No | Qty | Name
 
 # Step by step
 
